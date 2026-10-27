@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@config "../tailwind.config.cjs";
+
+@theme {
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-ink: #1f2623;
+  --color-ink-soft: #46514c;
+  --color-forest: #163a2c;
+  --color-paper: #f7f5ee;
+  --color-sand: #ebeee6;
+  --color-card: #fdfcf8;
+  --color-line: #d5dacd;
+  --color-sage: #9db39a;
+  --color-sage-soft: #cfdcca;
+  --color-clay: #8c3a27;
+  --color-moss: #2a5a42;
+  --color-sun: #d9e4d4;
+  --color-lake: #3d5560;
+  --color-moss-tint: #e1ebe0;
+  --color-sun-tint: #efede2;
+  --color-lake-tint: #e4eaec;
+  --color-rose-tint: #f3e3dd;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #f7f5ee;
+  color: #1f2623;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+:focus-visible {
+  outline: 3px solid #163a2c;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.on-dark :focus-visible {
+  outline-color: #cfdcca;
+}
+
+::selection {
+  background: #cfdcca;
+  color: #1f2623;
+}
+
+.perf {
+  background-image: linear-gradient(90deg, #c3cbbb 50%, transparent 50%);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes stamp {
+  0% { opacity: 0; transform: rotate(-14deg) scale(1.9); }
+  60% { opacity: 1; transform: rotate(-9deg) scale(0.94); }
+  100% { opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+.rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.stamp-in { animation: stamp 0.6s 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .stamp-in { animation: none; }
+  .stamp-in { transform: rotate(-9deg); }
+}
